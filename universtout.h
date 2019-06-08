@@ -5,6 +5,10 @@
 #include "../destinLib/univers.h"
 #include "genhistdemarrage.h"
 
+enum HistoireId {
+    hi_Selection
+};
+
 class UniversTout : public Univers
 {
     Q_OBJECT
@@ -13,6 +17,7 @@ public:
     UniversTout(ModeAffichage modeAffichage = ModeAffichage::ema_Jeu,
                 QWidget *parent = nullptr);
 
+    Hist* ExecuterGenerateurHistoire(HistoireId histoireId);
     Hist* ExecuterGenerateurHistoire();
 
 protected:

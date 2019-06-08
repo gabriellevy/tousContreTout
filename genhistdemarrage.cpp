@@ -8,15 +8,8 @@ GenHistDemarrage::GenHistDemarrage(Hist* histoireGeneree):GenHistoire (histoireG
     //m_HistoireGeneree->m_CallbackFunctions["appliquerCmdts"] = &appliquerCmdts;
 }
 
-void GenHistDemarrage::GenererThemes()
-{
-
-}
-
 Hist* GenHistDemarrage::GenererHistoire()
 {
-    GenererThemes();
-
     GenererPersos();
 
     GenererFonctionsCallback();
@@ -34,8 +27,8 @@ void GenHistDemarrage::GenererPersos()
 
 void GenHistDemarrage::GenererEvtsAccueil()
 {
-    /*Evt* Debut = AjouterEvt("Debut", "Test début 10 commandements");
-    Effet* intro = Debut->AjouterEffetNarration(
-                "On va bientôt choisir des commandements");
-*/
+    Evt* Debut = this->AjouterEvt("Debut", "Test début Tous contre tous");
+    /*Effet* intro =*/ this->m_GenerateurEvt->AjouterEffetNarration( Debut,
+                "On va bientôt choisir notre personnage !");
+
 }

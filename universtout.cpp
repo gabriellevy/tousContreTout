@@ -8,7 +8,6 @@ UniversTout::UniversTout(ModeAffichage modeAffichage,
     : Univers(parent, modeAffichage)
 {
     this->AppliquerTheme(QColor(180, 180, 210));
-
 }
 
 void UniversTout::GenererCaracs()
@@ -17,8 +16,21 @@ void UniversTout::GenererCaracs()
 
 Hist* UniversTout::ExecuterGenerateurHistoire()
 {
-    m_Histoire = new Hist();
-    m_GenHistoire = new GenHistDemarrage(m_Histoire);
-    m_GenHistoire->GenererHistoire();
+    return this->ExecuterGenerateurHistoire(HistoireId::hi_Selection);
+}
+
+Hist* UniversTout::ExecuterGenerateurHistoire(HistoireId histoireId)
+{
+    switch (histoireId) {
+    case HistoireId::hi_Selection : {
+        m_Histoire = new Hist("Sélection du rêve");
+        m_GenHistoire = new GenHistDemarrage(m_Histoire);
+        m_GenHistoire->GenererHistoire();
+        this->setWindowTitle("Sélection du rêve");
+    }break;
+    }
+
+    Q_ASSERT_X(m_Histoire != nullptr, "UniversTout::ExecuterGenerateurHistoire", "Génération d'histoire échouée");
+
     return m_Histoire;
 }
