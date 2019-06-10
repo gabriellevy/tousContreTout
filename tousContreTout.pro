@@ -47,6 +47,7 @@ SOURCES += \
     ../destinLib/reglages.cpp \
     ../destinLib/dbmanager.cpp \
     ../destinLib/selectionneurdevenement.cpp \
+    dpersotct.cpp \
     genhistdemarrage.cpp \
         main.cpp \
     aspectratiolabel.cpp \
@@ -77,6 +78,7 @@ HEADERS += \
     ../destinLib/dbmanager.h \
     ../destinLib/selectionneurdevenement.h \
     aspectratiolabel.h \
+    dpersotct.h \
     genhistdemarrage.h \
     universtout.h
 
@@ -94,3 +96,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    persos.qrc
