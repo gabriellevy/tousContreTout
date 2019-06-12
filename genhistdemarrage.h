@@ -22,7 +22,7 @@ public:
 
     virtual Hist* GenererHistoire();
 
-    Choix* AjouterChoixPerso(Evt* Debut, Effet* effet);
+    Choix* AjouterChoixPerso(Effet* effetChoix);
 };
 
 #endif // GENHISTDEMARRAGE_H

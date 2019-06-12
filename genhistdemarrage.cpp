@@ -94,30 +94,36 @@ void GenHistDemarrage::GenererPersos()
 
 }
 
+/**
+ * génération de la pahse de choix de personnage
+ */
 void GenHistDemarrage::GenererEvtsAccueil()
 {
-    Evt* Debut = this->AjouterEvt("Debut", "Sélection du héros et de l'aventure");
-    Effet* intro = this->m_GenerateurEvt->AjouterEffetNarration( Debut,
-                "Choisissez votre personnage");
+    /*Evt* Debut = */this->AjouterEvt("Debut", "Sélection du héros et de l'aventure");
+    Effet* intro =this->m_GenerateurEvt->AjouterEffetNarration( "Choisissez votre personnage");
     // on tire 5 héros aléatoires parmi la liste et on les propose
-    this->AjouterChoixPerso(Debut, intro);
-    this->AjouterChoixPerso(Debut, intro);
-    this->AjouterChoixPerso(Debut, intro);
-    this->AjouterChoixPerso(Debut, intro);
-
+    this->AjouterChoixPerso(intro);
+    this->AjouterChoixPerso(intro);
+    this->AjouterChoixPerso(intro);
+    this->AjouterChoixPerso(intro);
 }
 
-Choix* GenHistDemarrage::AjouterChoixPerso(Evt* Debut, Effet* effet)
+Choix* GenHistDemarrage::AjouterChoixPerso(Effet* effetChoix)
 {
     DPersoTCT* perso = m_TousLesPersos.at(qrand() % m_TousLesPersos.length());
     QString changerPersoId = "devient" + perso->m_Id;
 
-    Choix* choix = effet->AjouterChoixGoToEffet(perso->m_Nom, changerPersoId, perso->m_CheminImagePortrait);
+    Choix* choix = m_GenerateurEvt->AjouterChoixGoToEffet(perso->m_Nom, changerPersoId, perso->m_CheminImagePortrait, effetChoix);
 
     QString textChoix = "Vous êtes maintenant " + perso->m_Nom;
-    /*Effet* effet_change_perso =*/ this->m_GenerateurEvt->AjouterEffetChangementPerso(Debut, perso->m_Id, textChoix, perso->m_CheminImagePortrait, changerPersoId);
+    this->m_GenerateurEvt->AjouterEffetChangementPerso(
+                perso->m_Id, textChoix, perso->m_CheminImagePortrait, changerPersoId);
 
-    this->m_GenerateurEvt->AjouterEffetNarration(Debut, "youpi youplalalal");
+    this->m_GenerateurEvt->AjouterEffetNarration("youpi youplalalal");
 
     return choix;
 }
+
+/**
+ * fin de génération de la phase de choix de personnage
+ */
